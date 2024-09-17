@@ -26,5 +26,18 @@ public class Controller {
             return "Ошибка при сохранении данных.";
         }
     }
-    
+    @GetMapping("/getBackend")
+    public ResponseEntity<String> getBackendData() {
+        StringBuilder content = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new FileReader("data.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+            return new ResponseEntity<>(content.toString(), HttpStatus.OK);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("Ошибка при чтении данных", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
