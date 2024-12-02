@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8082")
+@CrossOrigin(origins = "http://127.0.0.1:8082")
 public class DataController {
 
     @PostMapping("/submitData")
